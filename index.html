@@ -178,8 +178,7 @@
           <label class="check-label terms"><input type="checkbox" required /> <span>我同意将论文资料保存在此设备中</span></label>
           <button class="button button-primary full-width" type="submit">创建研究空间 <span>→</span></button>
           <p class="form-note">正式上线时可接入 Supabase 或 Firebase，实现真实邮箱验证与找回密码。</p>
-        </form>
-        <form class="auth-form" id="resetForm">
+        </form><button class="link-button account-logout" id="logoutButton" hidden type="button">退出当前账户</button><form class="auth-form" id="resetForm">
           <div class="reset-icon">↗</div><h3>找回你的空间</h3><p class="reset-copy">输入注册时使用的 QQ 邮箱，我们会向你发送重置指引。</p>
           <label>QQ 邮箱<input type="email" id="resetEmail" placeholder="例如 123456@qq.com" required /></label>
           <button class="button button-primary full-width" type="submit">发送重置邮件 <span>→</span></button>
@@ -198,7 +197,9 @@
       </section>
     </div>
 
-    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>\n    <script src="config.js"></script>\n    <script src="app.js"></script>
   </body>
 </html>
+
+
 
