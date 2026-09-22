@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c1824" />
+    <meta name="description" content="Paperwise 论文整理工作台：上传论文，自动分类，专注研究。" />
+    <title>Paperwise · 论文整理工作台</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="主导航">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
+            <div class="brand-name">paperwise</div>
+            <div class="brand-caption">RESEARCH OS</div>
+          </div>
+        </div>
+
+        <div class="workspace-switcher">
+          <div class="workspace-orb">A</div>
+          <div class="workspace-copy">
+            <span>我的研究空间</span>
+            <small>个人工作区</small>
+          </div>
+          <span class="chevron">⌄</span>
+        </div>
+
+        <nav class="nav-group" aria-label="工作台">
+          <div class="nav-label">WORKSPACE</div>
+          <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span>研究总览</button>
+          <button class="nav-item" data-view="library"><span class="nav-icon">▤</span>我的文献 <span class="nav-count">24</span></button>
+          <button class="nav-item" data-view="categories"><span class="nav-icon">◫</span>主题分类</button>
+          <button class="nav-item" data-view="reading"><span class="nav-icon">◉</span>阅读队列 <span class="nav-dot"></span></button>
+        </nav>
+
+        <nav class="nav-group second-nav" aria-label="管理">
+          <div class="nav-label">MANAGE</div>
+          <button class="nav-item" data-action="settings"><span class="nav-icon">⚙</span>空间设置</button>
+          <button class="nav-item" data-action="help"><span class="nav-icon">?</span>使用帮助</button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="sync-card">
+            <div class="sync-icon">↗</div>
+            <div>
+              <strong>本地演示模式</strong>
+              <span>数据保存在此设备</span>
+            </div>
+          </div>
+          <button class="profile-mini" id="profileButton">
+            <span class="avatar avatar-small" id="sidebarAvatar">林</span>
+            <span class="profile-text"><strong id="sidebarName">林安</strong><small id="sidebarEmail">demo@qq.com</small></span>
+            <span class="more">•••</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="breadcrumb"><span>我的研究空间</span><b>/</b><strong id="breadcrumbTitle">研究总览</strong></div>
+          <div class="top-actions">
+            <div class="global-search">
+              <span class="search-icon">⌕</span>
+              <input id="searchInput" type="search" placeholder="搜索论文、作者或关键词" aria-label="搜索论文、作者或关键词" />
+              <kbd>⌘ K</kbd>
+            </div>
+            <button class="icon-button" id="notificationsButton" aria-label="通知"><span>♧</span><i></i></button>
+            <button class="avatar avatar-medium" id="topAvatar" aria-label="打开账户">林</button>
+          </div>
+        </header>
+
+        <div class="page-content">
+          <section class="page-heading">
+            <div>
+              <div class="eyebrow"><span class="live-dot"></span> PERSONAL RESEARCH DESK</div>
+              <h1 id="pageTitle">早上好，林安<span class="heading-dot">.</span></h1>
+              <p id="pageSubtitle">今天也让知识井然有序。</p>
+            </div>
+            <div class="heading-actions">
+              <button class="button button-quiet" id="exportButton"><span>⇩</span> 导出清单</button>
+              <button class="button button-primary" id="uploadButton"><span>＋</span> 上传论文</button>
+              <input id="fileInput" type="file" accept=".pdf,.doc,.docx,.txt,.md" multiple hidden />
+            </div>
+          </section>
+
+          <section class="stat-grid" aria-label="研究统计">
+            <article class="stat-card accent-blue">
+              <div class="stat-top"><span>论文总数</span><span class="stat-symbol">▤</span></div>
+              <div class="stat-value" id="totalCount">24</div>
+              <div class="stat-meta"><span class="trend-up">↗ 12.5%</span><span>较上月</span></div>
+            </article>
+            <article class="stat-card accent-teal">
+              <div class="stat-top"><span>主题分类</span><span class="stat-symbol">◫</span></div>
+              <div class="stat-value" id="categoryCount">06</div>
+              <div class="stat-meta"><span class="status-chip">已自动整理</span></div>
+            </article>
+            <article class="stat-card accent-orange">
+              <div class="stat-top"><span>本月阅读</span><span class="stat-symbol">◉</span></div>
+              <div class="stat-value">68<span class="unit">%</span></div>
+              <div class="stat-meta"><span class="trend-up orange">↗ 8.0%</span><span>完成度</span></div>
+            </article>
+            <article class="stat-card accent-purple">
+              <div class="stat-top"><span>待处理</span><span class="stat-symbol">◌</span></div>
+              <div class="stat-value" id="pendingCount">03</div>
+              <div class="stat-meta"><span class="neutral-chip">需要你的确认</span></div>
+            </article>
+          </section>
+
+          <section class="upload-panel" id="dropZone">
+            <div class="upload-visual" aria-hidden="true">
+              <div class="upload-ring ring-one"></div>
+              <div class="upload-ring ring-two"></div>
+              <div class="upload-ring ring-three"></div>
+              <div class="upload-center">↑</div>
+            </div>
+            <div class="upload-copy">
+              <h2>把论文放进来，剩下的交给 Paperwise</h2>
+              <p>拖入 PDF、Word 或纯文本文件，我们会识别标题、关键词并自动归入主题。</p>
+              <div class="upload-actions"><button class="button button-primary button-small" id="dropUploadButton">选择文件</button><span>或直接拖拽到此处</span></div>
+            </div>
+            <div class="upload-status"><span class="status-dot"></span><span id="uploadStatusText">智能归档已就绪</span></div>
+          </section>
+
+          <div class="content-grid">
+            <section class="papers-section">
+              <div class="section-heading">
+                <div><div class="section-kicker">RECENT ACTIVITY</div><h2>最近整理</h2></div>
+                <div class="section-controls"><div class="filter-select"><span>全部主题</span><span>⌄</span><select id="categoryFilter" aria-label="按主题筛选"><option value="all">全部主题</option></select></div><button class="view-toggle active" aria-label="列表视图">≡</button><button class="view-toggle" aria-label="网格视图">⊞</button></div>
+              </div>
+              <div class="paper-list" id="paperList"></div>
+              <button class="load-more" id="loadMoreButton">查看全部文献 <span>→</span></button>
+            </section>
+
+            <aside class="insights-section">
+              <div class="section-heading compact"><div><div class="section-kicker">ASSISTANT NOTES</div><h2>整理建议</h2></div><button class="more-button" aria-label="更多建议">•••</button></div>
+              <div class="insight-card highlight">
+                <div class="insight-icon sparkle">✦</div>
+                <div><span class="insight-label">自动发现</span><h3>你最近在关注<br /><em>生成式人工智能</em></h3><p>根据近 7 天新增的 8 篇论文推断。</p><button class="text-button" id="exploreTopicButton">查看相关主题 <span>→</span></button></div>
+              </div>
+              <div class="insight-card task-card">
+                <div class="task-icon">⌁</div>
+                <div class="task-copy"><span class="insight-label">需要确认</span><h3>3 篇论文等待归类</h3><p>快速确认后，工作区会更整洁。</p></div>
+                <button class="round-arrow" id="reviewPendingButton">→</button>
+              </div>
+              <div class="activity-block"><div class="activity-title"><span>最近活跃</span><span class="tiny-muted">今天</span></div><div class="activity-line"><span class="activity-avatar">M</span><span><strong>你</strong> 将 4 篇论文移入 <b>AI & ML</b></span><time>10:42</time></div><div class="activity-line"><span class="activity-avatar secondary">P</span><span><strong>Paperwise</strong> 完成了自动摘要</span><time>09:18</time></div></div>
+              <div class="tip-card"><span class="tip-mark">i</span><p>试试在文件名中加入作者或年份，识别结果会更准确。</p></div>
+            </aside>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-icon">✓</span><span id="toastMessage">已完成</span></div>
+
+    <div class="modal-backdrop" id="authModal" aria-hidden="true">
+      <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+        <button class="modal-close" data-close-modal="authModal" aria-label="关闭">×</button>
+        <div class="modal-brand"><div class="brand-mark small"><span></span><span></span><span></span></div><span>paperwise</span></div>
+        <div class="auth-intro"><div class="modal-eyebrow">PERSONAL RESEARCH DESK</div><h2 id="authTitle">把研究，放在自己的节奏里。</h2><p>用 QQ 邮箱登录你的论文整理空间。</p></div>
+        <div class="auth-tabs"><button class="auth-tab active" data-auth-tab="login">登录</button><button class="auth-tab" data-auth-tab="register">注册新账号</button></div>
+        <form class="auth-form active" id="loginForm">
+          <label>QQ 邮箱<input type="email" id="loginEmail" placeholder="例如 123456@qq.com" required /></label>
+          <label>密码<div class="password-field"><input type="password" id="loginPassword" placeholder="请输入密码" required minlength="6" /><button type="button" class="show-password" data-target="loginPassword">显示</button></div></label>
+          <div class="form-row"><label class="check-label"><input type="checkbox" checked /> <span>保持登录</span></label><button type="button" class="link-button" id="forgotButton">忘记密码？</button></div>
+          <button class="button button-primary full-width" type="submit">进入我的空间 <span>→</span></button>
+          <p class="form-note">演示模式下，账号信息仅保存在当前浏览器。</p>
+        </form>
+        <form class="auth-form" id="registerForm">
+          <label>QQ 邮箱<input type="email" id="registerEmail" placeholder="例如 123456@qq.com" required /></label>
+          <label>设置密码<div class="password-field"><input type="password" id="registerPassword" placeholder="至少 6 位字符" required minlength="6" /><button type="button" class="show-password" data-target="registerPassword">显示</button></div></label>
+          <label class="check-label terms"><input type="checkbox" required /> <span>我同意将论文资料保存在此设备中</span></label>
+          <button class="button button-primary full-width" type="submit">创建研究空间 <span>→</span></button>
+          <p class="form-note">正式上线时可接入 Supabase 或 Firebase，实现真实邮箱验证与找回密码。</p>
+        </form>
+        <form class="auth-form" id="resetForm">
+          <div class="reset-icon">↗</div><h3>找回你的空间</h3><p class="reset-copy">输入注册时使用的 QQ 邮箱，我们会向你发送重置指引。</p>
+          <label>QQ 邮箱<input type="email" id="resetEmail" placeholder="例如 123456@qq.com" required /></label>
+          <button class="button button-primary full-width" type="submit">发送重置邮件 <span>→</span></button>
+          <button class="link-button back-login" type="button">返回登录</button>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="paperModal" aria-hidden="true">
+      <section class="paper-modal" role="dialog" aria-modal="true" aria-labelledby="paperModalTitle">
+        <button class="modal-close" data-close-modal="paperModal" aria-label="关闭">×</button>
+        <div class="paper-modal-top"><div class="paper-type-icon">PDF</div><div><div class="modal-eyebrow">PAPER DETAIL</div><h2 id="paperModalTitle">论文详情</h2></div></div>
+        <div class="paper-detail-grid"><div><span>主题分类</span><strong id="detailCategory">AI & ML</strong></div><div><span>整理时间</span><strong id="detailDate">刚刚</strong></div><div><span>阅读状态</span><strong id="detailStatus">未开始</strong></div></div>
+        <div class="paper-summary"><span class="summary-label">自动摘要</span><p id="detailSummary">正在等待你的阅读标注。上传文本文件后，Paperwise 会从内容中提取摘要线索。</p></div>
+        <div class="paper-modal-actions"><button class="button button-quiet" data-close-modal="paperModal">稍后阅读</button><button class="button button-primary" id="markReadButton">标记为已读</button></div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
