@@ -1,20 +1,32 @@
 # Paperwise · 论文整理工作台
 
-这是一个适合发布到 GitHub Pages 的纯静态网页版本。打开后可以直接体验：论文上传、基于文件名的自动分类、搜索、主题筛选、阅读状态、清单导出，以及 QQ 邮箱注册/登录/找回密码界面。
+Paperwise 是一个适合小范围朋友使用的论文整理网页：每个人使用自己的 QQ 邮箱注册和登录，登录后只看到自己的论文。
 
-## 当前版本说明
+## 当前能力
 
-GitHub Pages 只能托管静态前端，因此当前演示版不会把真实密码发送到服务器，也不会实现真正的邮箱验证。账号、论文列表和阅读状态仅保存在浏览器的 `localStorage` 中，适合产品原型和交互验收。
+- QQ 邮箱注册、登录、退出和找回密码流程
+- 上传 PDF、Word、TXT、Markdown 文件
+- 基于文件名关键词的自动主题分类
+- 搜索、筛选、阅读状态和清单导出
+- 空库默认从 0 开始，不再放置演示论文
+- 默认字号已整体放大，适合长时间阅读
+- 没有云端配置时，同一设备不同账户也会各自隔离数据
 
-如果要正式上线，需要接入身份与数据服务，例如 Supabase 或 Firebase：
+## 开启朋友之间的跨设备账户
 
-1. 在服务中开启 Email/Password 登录，并限制邮箱域名为 `qq.com`。
-2. 用数据库保存用户、论文元数据、分类和阅读状态；用对象存储保存 PDF/Word 文件。
-3. 把 `app.js` 中的 `localStorage` 读写替换为服务 SDK 调用，并增加邮箱验证、重置密码和上传大小限制。
-4. 不要在 GitHub Pages 的前端代码中写入服务端密钥；只放公开的项目配置。
+GitHub Pages 只能托管网页，不能安全保存密码和论文文件。要让朋友在不同设备登录并同步论文，需要接入 Supabase：
 
-## 发布到 GitHub Pages
+1. 创建一个 Supabase 项目。
+2. 打开 SQL Editor，把本目录的 `supabase-schema.sql` 全部执行一次。
+3. 在 Supabase Authentication → Providers → Email 中开启邮箱密码登录。
+4. 将项目的 URL 和 anon public key 填入 `config.js` 的 `supabaseUrl` 和 `supabaseAnonKey`。
+5. 重新提交并推送 `config.js`。anon public key 可以出现在网页中，数据库和文件安全依靠上面的 RLS 策略。
+6. 在 Supabase 的邮件设置中配置正式发信服务，QQ 邮箱验证和找回密码才会真正发送邮件。
 
-将 `index.html`、`styles.css`、`app.js`、`favicon.svg` 推送到 GitHub 仓库的默认分支，在仓库的 **Settings → Pages** 中选择 **Deploy from a branch**，分支选默认分支、目录选 `/ (root)`，保存后等待 Pages 完成部署即可。
+没有填写 `config.js` 时，网页会自动使用“离线账户模式”：密码只保存为浏览器端哈希值，账户和论文只存在当前设备，适合先体验，不适合多人正式使用。
 
-本项目不需要 Node.js、构建命令或环境变量，适合直接从仓库根目录发布。
+## GitHub Pages
+
+这是纯静态网页，不需要 Node.js 或构建命令。将根目录发布到 GitHub Pages 即可。当前仓库地址：
+
+https://github.com/joselinekopplin-del/paperwise
