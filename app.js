@@ -138,7 +138,11 @@ function renderPapers() {
     return matchesCategory && (!query || haystack.includes(query));
   });
   $('#totalCount').textContent = state.papers.length;
-  $('#pendingCount').textContent = state.papers.filter(paper => paper.status === '未开始' || paper.category === '待确认').length;
+  $('#pendingCount').textContent = state.papers.filter(paper => paper.status === '未开始' || paper.category === '待确认').length;  const readCount = state.papers.filter(paper => paper.status === '已读').length;
+  const readingProgress = state.papers.length ? Math.round((readCount / state.papers.length) * 100) : 0;
+  $('#readingProgress').innerHTML = `${readingProgress}<span class="unit">%</span>`;
+  $('#readingTrend').textContent = state.papers.length ? `${readCount}/${state.papers.length}` : '—';
+  $('#readingTrendLabel').textContent = state.papers.length ? '已读论文' : '暂无阅读记录';
   $('.nav-item[data-view="library"] .nav-count').textContent = state.papers.length;
   $('#loadMoreButton').hidden = !state.papers.length;
   if (!visible.length) {
@@ -348,5 +352,6 @@ async function setup() {
 }
 
 document.addEventListener('DOMContentLoaded', setup);
+
 
 
