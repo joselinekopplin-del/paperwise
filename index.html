@@ -103,8 +103,8 @@
             </article>
             <article class="stat-card accent-orange">
               <div class="stat-top"><span>本月阅读</span><span class="stat-symbol">◉</span></div>
-              <div class="stat-value">68<span class="unit">%</span></div>
-              <div class="stat-meta"><span class="trend-up orange">↗ 8.0%</span><span>完成度</span></div>
+              <div class="stat-value" id="readingProgress">0<span class="unit">%</span></div>
+              <div class="stat-meta"><span class="trend-up orange" id="readingTrend">—</span><span id="readingTrendLabel">暂无阅读记录</span></div>
             </article>
             <article class="stat-card accent-purple">
               <div class="stat-top"><span>待处理</span><span class="stat-symbol">◌</span></div>
@@ -200,6 +200,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>\n    <script src="config.js"></script>\n    <script src="app.js"></script>
   </body>
 </html>
+
 
 
 
