@@ -19,7 +19,7 @@ GitHub Pages 只能托管网页，不能安全保存密码和论文文件。要�
 1. 创建一个 Supabase 项目。
 2. 打开 SQL Editor，把本目录的 `supabase-schema.sql` 全部执行一次。
 3. 在 Supabase Authentication → Providers → Email 中开启邮箱密码登录。
-4. 将项目的 URL 和 anon public key 填入 `config.js` 的 `supabaseUrl` 和 `supabaseAnonKey`。
+4. 将项目的 URL 和 Publishable key 填入 `config.js` 的 `supabaseUrl` 和 `supabasePublishableKey`。旧项目如果只有 anon key，也可以填入 `supabaseAnonKey`。
 5. 重新提交并推送 `config.js`。anon public key 可以出现在网页中，数据库和文件安全依靠上面的 RLS 策略。
 6. 在 Supabase 的邮件设置中配置正式发信服务，QQ 邮箱验证和找回密码才会真正发送邮件。
 
@@ -30,3 +30,4 @@ GitHub Pages 只能托管网页，不能安全保存密码和论文文件。要�
 这是纯静态网页，不需要 Node.js 或构建命令。将根目录发布到 GitHub Pages 即可。当前仓库地址：
 
 https://github.com/joselinekopplin-del/paperwise
+
